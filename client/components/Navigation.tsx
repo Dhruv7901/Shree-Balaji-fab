@@ -121,21 +121,33 @@ const Navigation = () => {
             {/* Search */}
             <div className="hidden md:flex items-center relative">
               {isSearchOpen ? (
-                <div className="flex items-center space-x-2">
+                <form
+                  onSubmit={handleSearch}
+                  className="flex items-center space-x-2"
+                >
                   <Input
                     type="text"
                     placeholder="Search sarees..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
                     className="w-64 border-saree-gold/30 focus:border-saree-gold"
                     autoFocus
                   />
+                  <Button type="submit" variant="ghost" size="sm">
+                    <Search className="h-4 w-4" />
+                  </Button>
                   <Button
+                    type="button"
                     variant="ghost"
                     size="sm"
-                    onClick={() => setIsSearchOpen(false)}
+                    onClick={() => {
+                      setIsSearchOpen(false);
+                      setSearchTerm("");
+                    }}
                   >
                     <X className="h-4 w-4" />
                   </Button>
-                </div>
+                </form>
               ) : (
                 <Button
                   variant="ghost"
