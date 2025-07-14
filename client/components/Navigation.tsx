@@ -130,8 +130,10 @@ const Navigation = () => {
             </div>
 
             {/* Account */}
-            <Button variant="ghost" size="sm">
-              <User className="h-5 w-5" />
+            <Button variant="ghost" size="sm" asChild>
+              <Link to="/login">
+                <User className="h-5 w-5" />
+              </Link>
             </Button>
 
             {/* Mobile Menu Button */}
