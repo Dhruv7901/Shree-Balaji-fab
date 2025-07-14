@@ -237,11 +237,12 @@ const ProductDetail = () => {
                       name: product.name,
                       price: product.price,
                       category: product.category,
+                      image: product.images[selectedImage],
                     })
                   }
                 >
                   <MessageCircle className="w-4 h-4 mr-2" />
-                  Buy Now via WhatsApp
+                  Order Now
                 </Button>
                 <Button variant="outline" size="lg" className="flex-1">
                   <Heart className="w-4 h-4 mr-2" />
