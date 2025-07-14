@@ -1,6 +1,6 @@
 // WhatsApp Business Integration for Saree Mahal
 
-const WHATSAPP_BUSINESS_NUMBER = "+919876543210"; // Store's WhatsApp Business number
+const WHATSAPP_BUSINESS_NUMBER = "+919426617601"; // Store's WhatsApp Business number
 
 interface ProductInfo {
   name: string;
@@ -44,7 +44,7 @@ Thank you!`;
 };
 
 export const generateGeneralInquiry = (): string => {
-  const message = `Hi Saree Mahal! 👋
+  const message = `Hi Balaji Fab! 👋
 
 I'm interested in exploring your saree collection. Could you please help me with:
 
@@ -73,7 +73,7 @@ Thank you!`;
 };
 
 export const generateCustomInquiry = (customMessage: string): string => {
-  const message = `Hi Saree Mahal! 👋
+  const message = `Hi Balaji Fab! 👋
 
 ${customMessage}
 
