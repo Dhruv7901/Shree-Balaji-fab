@@ -29,12 +29,13 @@ Thank you!`;
 };
 
 export const generateQuickBuyMessage = (product: ProductInfo): string => {
-  const message = `Hi! I would like to purchase this saree:
+  const message = `Hi! I'm interested in buying this saree:
 
-🛍️ *QUICK BUY REQUEST*
+🛍️ *ORDER NOW REQUEST*
 🌟 Product: ${product.name}
 💰 Price: ${product.price}
 ${product.category ? `📂 Category: ${product.category}` : ""}
+${product.image ? `📸 Product Image: ${product.image}` : ""}
 
 Please confirm availability and delivery details.
 
