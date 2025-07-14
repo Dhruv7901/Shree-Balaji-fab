@@ -195,28 +195,33 @@ const Index = () => {
     },
   ];
 
+  // Categories with real product images
   const categories = [
     {
       name: "Silk Sarees",
-      image: "/placeholder.svg",
+      image:
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F2cf060907eeb4d7aa3b349b487ae89b7?format=webp&width=800",
       count: "250+ Designs",
       color: "bg-saree-deep-red",
     },
     {
       name: "Wedding Collection",
-      image: "/placeholder.svg",
+      image:
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F8ada929b9c964af6b7146d68984dcc3a?format=webp&width=800",
       count: "180+ Designs",
       color: "bg-saree-gold",
     },
     {
       name: "Cotton Sarees",
-      image: "/placeholder.svg",
+      image:
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F0b1c6490a16b41a889c815109d4c4894?format=webp&width=800",
       count: "320+ Designs",
       color: "bg-saree-emerald",
     },
     {
       name: "Designer Sarees",
-      image: "/placeholder.svg",
+      image:
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F87c1fd5d8ed04adf84bcc00d2b0c5743?format=webp&width=800",
       count: "150+ Designs",
       color: "bg-saree-royal-blue",
     },
@@ -248,6 +253,14 @@ const Index = () => {
       avatar: "/placeholder.svg",
     },
   ];
+
+  // Function to scroll to products section
+  const scrollToProducts = () => {
+    const productsSection = document.getElementById("products-section");
+    if (productsSection) {
+      productsSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -281,6 +294,7 @@ const Index = () => {
                 <Button
                   size="lg"
                   className="bg-saree-deep-red hover:bg-saree-deep-red/90 text-white"
+                  onClick={scrollToProducts}
                 >
                   Shop Now
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -325,11 +339,29 @@ const Index = () => {
             <div className="relative">
               <div className="relative z-10">
                 <img
-                  src="/placeholder.svg"
-                  alt="Beautiful Saree"
+                  src="https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F8df1c237be694093810d7cad742cf408?format=webp&width=800"
+                  alt="Premium Trendy Collection Saree"
                   className="w-full h-[600px] object-cover rounded-2xl shadow-2xl"
                 />
                 <div className="absolute inset-0 saree-gradient opacity-20 rounded-2xl"></div>
+
+                {/* Featured Product Badge */}
+                <div className="absolute top-6 left-6 bg-white/90 backdrop-blur-sm rounded-lg p-4 shadow-lg">
+                  <div className="text-sm font-semibold text-saree-deep-red">
+                    Featured Today
+                  </div>
+                  <div className="text-xs text-muted-foreground">
+                    Golden Stripe Collection
+                  </div>
+                  <div className="flex items-center mt-1">
+                    <span className="text-lg font-bold text-saree-deep-red">
+                      ₹1,500
+                    </span>
+                    <span className="text-xs text-muted-foreground line-through ml-2">
+                      ₹2,500
+                    </span>
+                  </div>
+                </div>
               </div>
               <div className="absolute top-8 -left-8 w-32 h-32 saree-gradient rounded-full opacity-30 blur-xl"></div>
               <div className="absolute bottom-8 -right-8 w-40 h-40 bg-saree-emerald/30 rounded-full opacity-50 blur-xl"></div>
@@ -400,6 +432,7 @@ const Index = () => {
               <Card
                 key={category.name}
                 className="group cursor-pointer hover:shadow-lg transition-all duration-300 overflow-hidden"
+                onClick={scrollToProducts}
               >
                 <CardContent className="p-0">
                   <div className="relative">
@@ -425,15 +458,16 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Trending Products */}
-      <section className="py-16 bg-background">
+      {/* Trending Products - This is the target section for Shop Now */}
+      <section id="products-section" className="py-16 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-serif font-bold mb-4">
-              Trending Sarees
+              Our Products & Collections
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Discover our most loved pieces that are trending right now
+              Discover our curated collection of traditional sarees with
+              high-quality fabrics and detailed craftsmanship
             </p>
           </div>
 
@@ -514,16 +548,18 @@ const Index = () => {
                       <Button
                         size="sm"
                         className="bg-saree-deep-red hover:bg-saree-deep-red/90"
-                        onClick={() =>
+                        onClick={(e) => {
+                          e.stopPropagation();
                           sendQuickBuy({
                             name: product.name,
                             price: product.price,
                             category: product.category,
-                          })
-                        }
+                            image: product.image,
+                          });
+                        }}
                       >
                         <MessageCircle className="w-4 h-4 mr-1" />
-                        WhatsApp
+                        Order Now
                       </Button>
                     </div>
                   </div>
@@ -537,6 +573,7 @@ const Index = () => {
               size="lg"
               variant="outline"
               className="border-saree-gold text-saree-deep-red hover:bg-saree-gold/10"
+              onClick={sendGeneralInquiry}
             >
               View All Products
               <ArrowRight className="ml-2 h-4 w-4" />
@@ -562,7 +599,7 @@ const Index = () => {
                 <div className="flex items-start space-x-3">
                   <MapPin className="w-5 h-5 text-saree-deep-red mt-1" />
                   <div>
-                    <div className="font-semibold">Balaji Fab</div>
+                    <div className="font-semibold">Shree Balaji Fab</div>
                     <div className="text-muted-foreground">
                       Abhishek Market Ring Rd, Sahara Darwaja
                       <br />
@@ -660,13 +697,19 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
-              <div className="flex items-center space-x-2 mb-6">
-                <div className="saree-gradient w-10 h-10 rounded-full flex items-center justify-center">
-                  <span className="text-white font-bold text-lg">S</span>
-                </div>
+              <div className="flex items-center space-x-3 mb-6">
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F53ed207ebebe41a99b31295e5d3b01c2?format=webp&width=800"
+                  alt="Shree Balaji Fab Logo"
+                  className="w-10 h-10 object-contain"
+                />
                 <div>
-                  <div className="text-xl font-serif font-bold">Balaji Fab</div>
-                  <div className="text-sm opacity-80">Premium Sarees</div>
+                  <div className="text-xl font-serif font-bold">
+                    Shree Balaji Fab
+                  </div>
+                  <div className="text-sm opacity-80">
+                    Unfold the Beauty of Tradition
+                  </div>
                 </div>
               </div>
               <p className="text-sm opacity-80 mb-4">
@@ -698,15 +741,15 @@ const Index = () => {
             <div>
               <h3 className="font-semibold mb-4">Contact</h3>
               <ul className="space-y-2 text-sm opacity-80">
-                <li>+91 98765 43210</li>
-                <li>info@balajifab.com</li>
+                <li>+91 9426617601</li>
+                <li>info@shreebalalifab.com</li>
                 <li>Abhishek Market, Surat, Gujarat</li>
               </ul>
             </div>
           </div>
 
           <div className="border-t border-saree-warm-cream/20 mt-12 pt-8 text-center text-sm opacity-80">
-            <p>&copy; 2024 Balaji Fab. All rights reserved.</p>
+            <p>&copy; 2024 Shree Balaji Fab. All rights reserved.</p>
           </div>
         </div>
       </footer>
