@@ -73,7 +73,7 @@ Thank you!`;
 };
 
 export const generateCustomInquiry = (customMessage: string): string => {
-  const message = `Hi Balaji Fab! 👋
+  const message = `Hi Shree Balaji Fab! 👋
 
 ${customMessage}
 
