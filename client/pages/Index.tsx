@@ -430,25 +430,25 @@ const Index = () => {
               </h2>
               <p className="text-lg text-muted-foreground mb-8">
                 Experience the beauty of our sarees in person. Visit our store
-                in Mumbai for a personalized shopping experience with expert
+                in Surat for a personalized shopping experience with expert
                 assistance.
               </p>
               <div className="space-y-4 mb-8">
                 <div className="flex items-start space-x-3">
                   <MapPin className="w-5 h-5 text-saree-deep-red mt-1" />
                   <div>
-                    <div className="font-semibold">Saree Mahal</div>
+                    <div className="font-semibold">Balaji Fab</div>
                     <div className="text-muted-foreground">
-                      123 Fashion Street, Linking Road
+                      Abhishek Market Ring Rd, Sahara Darwaja
                       <br />
-                      Bandra West, Mumbai - 400050
+                      New Textile Market, Surat, Gujarat 395002
                     </div>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Phone className="w-5 h-5 text-saree-deep-red" />
                   <div>
-                    <div className="font-semibold">+91 98765 43210</div>
+                    <div className="font-semibold">+91 9426617601</div>
                     <div className="text-muted-foreground">
                       Open 10 AM - 9 PM
                     </div>
@@ -540,10 +540,8 @@ const Index = () => {
                   <span className="text-white font-bold text-lg">S</span>
                 </div>
                 <div>
-                  <div className="text-xl font-serif font-bold">
-                    Saree Mahal
-                  </div>
-                  <div className="text-sm opacity-80">Traditional Elegance</div>
+                  <div className="text-xl font-serif font-bold">Balaji Fab</div>
+                  <div className="text-sm opacity-80">Premium Sarees</div>
                 </div>
               </div>
               <p className="text-sm opacity-80 mb-4">
@@ -576,14 +574,14 @@ const Index = () => {
               <h3 className="font-semibold mb-4">Contact</h3>
               <ul className="space-y-2 text-sm opacity-80">
                 <li>+91 98765 43210</li>
-                <li>info@sareemahal.com</li>
-                <li>123 Fashion Street, Mumbai</li>
+                <li>info@balajifab.com</li>
+                <li>Abhishek Market, Surat, Gujarat</li>
               </ul>
             </div>
           </div>
 
           <div className="border-t border-saree-warm-cream/20 mt-12 pt-8 text-center text-sm opacity-80">
-            <p>&copy; 2024 Saree Mahal. All rights reserved.</p>
+            <p>&copy; 2024 Balaji Fab. All rights reserved.</p>
           </div>
         </div>
       </footer>
