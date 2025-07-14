@@ -20,6 +20,7 @@ export const generateProductInquiry = (product: ProductInfo): string => {
 🌟 *${product.name}*
 💰 Price: ${product.price}
 ${product.category ? `📂 Category: ${product.category}` : ""}
+${product.image ? `📸 Product Image: ${product.image}` : ""}
 
 Could you please provide more details and availability?
 
