@@ -40,11 +40,11 @@ const Navigation = () => {
                 onClick={sendGeneralInquiry}
               >
                 <Phone className="h-4 w-4" />
-                <span>+91 98765 43210</span>
+                <span>+91 9426617601</span>
               </button>
               <div className="hidden md:flex items-center space-x-2">
                 <MapPin className="h-4 w-4" />
-                <span>Visit our store in Mumbai</span>
+                <span>Visit our store in Surat</span>
               </div>
             </div>
             <div className="hidden md:block">
@@ -64,10 +64,10 @@ const Navigation = () => {
             </div>
             <div className="flex flex-col">
               <span className="text-xl font-serif font-bold saree-text-gradient">
-                Saree Mahal
+                Balaji Fab
               </span>
               <span className="text-xs text-muted-foreground font-sans">
-                Traditional Elegance
+                Premium Sarees
               </span>
             </div>
           </Link>
