@@ -13,6 +13,10 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        serif: ["Crimson Text", "serif"],
+        sans: ["Inter", "sans-serif"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -56,6 +60,14 @@ export default {
           "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
+        },
+        saree: {
+          gold: "hsl(var(--saree-gold))",
+          "deep-red": "hsl(var(--saree-deep-red))",
+          coral: "hsl(var(--saree-coral))",
+          emerald: "hsl(var(--saree-emerald))",
+          "royal-blue": "hsl(var(--saree-royal-blue))",
+          "warm-cream": "hsl(var(--saree-warm-cream))",
         },
       },
       borderRadius: {
