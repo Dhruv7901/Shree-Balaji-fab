@@ -184,11 +184,20 @@ const Navigation = () => {
 
         {/* Mobile Search */}
         <div className="md:hidden mt-4">
-          <Input
-            type="text"
-            placeholder="Search sarees..."
-            className="w-full border-saree-gold/30 focus:border-saree-gold"
-          />
+          <form onSubmit={handleMobileSearch} className="flex gap-2">
+            <Input
+              type="text"
+              placeholder="Search sarees..."
+              className="flex-1 border-saree-gold/30 focus:border-saree-gold"
+            />
+            <Button
+              type="submit"
+              size="sm"
+              className="bg-saree-deep-red hover:bg-saree-deep-red/90"
+            >
+              <Search className="h-4 w-4" />
+            </Button>
+          </form>
         </div>
 
         {/* Mobile Menu */}
