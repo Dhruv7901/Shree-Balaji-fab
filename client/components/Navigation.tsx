@@ -127,11 +127,15 @@ const Navigation = () => {
             </Button>
 
             {/* Cart */}
-            <Button variant="ghost" size="sm" className="relative">
-              <ShoppingBag className="h-5 w-5" />
-              <span className="absolute -top-1 -right-1 bg-saree-deep-red text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                3
-              </span>
+            <Button variant="ghost" size="sm" className="relative" asChild>
+              <Link to="/cart">
+                <ShoppingBag className="h-5 w-5" />
+                {state.itemCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-saree-deep-red text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                    {state.itemCount}
+                  </span>
+                )}
+              </Link>
             </Button>
 
             {/* Account */}
