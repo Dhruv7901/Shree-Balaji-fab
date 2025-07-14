@@ -8,6 +8,7 @@ import { useWhatsApp } from "../lib/whatsapp";
 const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
   const { sendGeneralInquiry } = useWhatsApp();
 
   const menuItems = [
