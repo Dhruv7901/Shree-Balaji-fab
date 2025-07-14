@@ -373,9 +373,9 @@ const ProductDetail = () => {
                 <div className="text-xs text-muted-foreground">100% Safe</div>
               </div>
               <div className="text-center">
-                <RotateCcw className="w-6 h-6 text-saree-coral mx-auto mb-2" />
-                <div className="text-xs font-semibold">Easy Returns</div>
-                <div className="text-xs text-muted-foreground">7 Days</div>
+                <RotateCcw className="w-6 h-6 text-gray-500 mx-auto mb-2" />
+                <div className="text-xs font-semibold">Return Policy</div>
+                <div className="text-xs text-muted-foreground">No Returns</div>
               </div>
             </div>
           </div>
