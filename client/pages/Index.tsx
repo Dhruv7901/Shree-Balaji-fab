@@ -9,15 +9,12 @@ import {
   MessageCircle,
   MapPin,
   Users,
-  Heart,
-  ShoppingBag,
 } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import Navigation from "../components/Navigation";
 import { useWhatsApp } from "../lib/whatsapp";
-import { useCart } from "../contexts/CartContext";
 
 const Index = () => {
   const [hoveredProduct, setHoveredProduct] = useState<number | null>(null);
@@ -495,36 +492,12 @@ const Index = () => {
                     >
                       {product.discount}
                     </Badge>
-                    <div
-                      className={`absolute top-3 right-3 transition-all duration-300 ${
-                        hoveredProduct === product.id
-                          ? "translate-y-0 opacity-100"
-                          : "translate-y-2 opacity-0"
-                      }`}
-                    >
-                      <div className="flex flex-col space-y-2">
-                        <Button
-                          size="sm"
-                          variant="secondary"
-                          className="w-10 h-10 p-0"
-                        >
-                          <Heart className="w-4 h-4" />
-                        </Button>
-                        <Button
-                          size="sm"
-                          variant="secondary"
-                          className="w-10 h-10 p-0"
-                        >
-                          <ShoppingBag className="w-4 h-4" />
-                        </Button>
-                      </div>
-                    </div>
                   </div>
                   <div className="p-4">
                     <Badge variant="outline" className="text-xs mb-2">
                       {product.category}
                     </Badge>
-                    <h3 className="font-semibold text-lg mb-2 group-hover:text-saree-deep-red transition-colors">
+                    <h3 className="font-semibold text-lg mb-2 group-hover:text-saree-deep-red transition-colors line-clamp-2">
                       {product.name}
                     </h3>
                     <div className="flex items-center mb-2">
@@ -536,7 +509,7 @@ const Index = () => {
                         ({product.reviews} reviews)
                       </span>
                     </div>
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between mb-3">
                       <div className="flex items-center space-x-2">
                         <span className="text-lg font-bold text-saree-deep-red">
                           {product.price}
@@ -545,23 +518,23 @@ const Index = () => {
                           {product.originalPrice}
                         </span>
                       </div>
-                      <Button
-                        size="sm"
-                        className="bg-saree-deep-red hover:bg-saree-deep-red/90"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          sendQuickBuy({
-                            name: product.name,
-                            price: product.price,
-                            category: product.category,
-                            image: product.image,
-                          });
-                        }}
-                      >
-                        <MessageCircle className="w-4 h-4 mr-1" />
-                        Order Now
-                      </Button>
                     </div>
+                    <Button
+                      size="sm"
+                      className="w-full bg-green-600 hover:bg-green-700 text-white"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        sendQuickBuy({
+                          name: product.name,
+                          price: product.price,
+                          category: product.category,
+                          image: product.image,
+                        });
+                      }}
+                    >
+                      <MessageCircle className="w-4 h-4 mr-2" />
+                      Order Now
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
