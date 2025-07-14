@@ -386,6 +386,13 @@ const Index = () => {
                       <Button
                         size="sm"
                         className="bg-saree-deep-red hover:bg-saree-deep-red/90"
+                        onClick={() =>
+                          sendQuickBuy({
+                            name: product.name,
+                            price: product.price,
+                            category: product.category,
+                          })
+                        }
                       >
                         <MessageCircle className="w-4 h-4 mr-1" />
                         WhatsApp
