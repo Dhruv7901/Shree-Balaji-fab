@@ -17,6 +17,7 @@ import { useWhatsApp } from "../lib/whatsapp";
 const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const { sendGeneralInquiry } = useWhatsApp();
 
   const categories = [
     { name: "Silk Sarees", href: "/silk-sarees" },
