@@ -19,6 +19,7 @@ const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const { sendGeneralInquiry } = useWhatsApp();
+  const { state } = useCart();
 
   const categories = [
     { name: "Silk Sarees", href: "/silk-sarees" },
