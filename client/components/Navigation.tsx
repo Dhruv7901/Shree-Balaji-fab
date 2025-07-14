@@ -199,12 +199,12 @@ const Navigation = () => {
 
               <div className="pt-4 border-t border-border">
                 <Link
-                  to="/account"
+                  to="/login"
                   className="flex items-center space-x-2 text-foreground hover:text-saree-deep-red transition-colors duration-200 py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   <User className="h-4 w-4" />
-                  <span>My Account</span>
+                  <span>Login / Register</span>
                 </Link>
               </div>
             </div>
