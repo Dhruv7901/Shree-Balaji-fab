@@ -9,6 +9,10 @@ import {
   MessageCircle,
   MapPin,
   Users,
+  Instagram,
+  Mail,
+  ExternalLink,
+  Navigation2,
 } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
@@ -123,7 +127,7 @@ const Index = () => {
     {
       id: 8,
       name: "Golden Lace Border Collection - Party Special",
-      price: "₹1,500",
+      price: "���1,500",
       originalPrice: "₹2,700",
       image:
         "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F8ada929b9c964af6b7146d68984dcc3a?format=webp&width=800",
@@ -146,7 +150,7 @@ const Index = () => {
       discount: "50% OFF",
       category: "Traditional Collection",
       description:
-        "���️ HERITAGE PRIDE! Authentic Patola-inspired patterns straight from Gujarat's textile tradition. Own a piece of Indian heritage at unbeatable price!",
+        "🏛️ HERITAGE PRIDE! Authentic Patola-inspired patterns straight from Gujarat's textile tradition. Own a piece of Indian heritage at unbeatable price!",
     },
     {
       id: 10,
