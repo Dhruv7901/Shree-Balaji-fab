@@ -164,6 +164,7 @@ const Index = () => {
                   variant="outline"
                   size="lg"
                   className="border-saree-gold text-saree-deep-red hover:bg-saree-gold/10"
+                  onClick={sendGeneralInquiry}
                 >
                   <MessageCircle className="mr-2 h-4 w-4" />
                   WhatsApp Us
