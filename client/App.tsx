@@ -14,6 +14,8 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import FAQ from "./pages/FAQ";
 import Terms from "./pages/Terms";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 import { CartProvider } from "./contexts/CartContext";
 
 const queryClient = new QueryClient();
