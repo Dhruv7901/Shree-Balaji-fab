@@ -17,6 +17,7 @@ import { Card, CardContent } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import Navigation from "../components/Navigation";
 import { useWhatsApp } from "../lib/whatsapp";
+import { useCart } from "../contexts/CartContext";
 
 const Index = () => {
   const [hoveredProduct, setHoveredProduct] = useState<number | null>(null);
