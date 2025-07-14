@@ -25,6 +25,23 @@ const Navigation = () => {
     }
   };
 
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchTerm.trim()) {
+      window.location.href = `/search?q=${encodeURIComponent(searchTerm.trim())}`;
+    }
+  };
+
+  const handleMobileSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    const mobileSearchInput = e.currentTarget.querySelector(
+      "input",
+    ) as HTMLInputElement;
+    if (mobileSearchInput?.value.trim()) {
+      window.location.href = `/search?q=${encodeURIComponent(mobileSearchInput.value.trim())}`;
+    }
+  };
+
   return (
     <header className="w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 border-b border-saree-gold/20">
       {/* Top Bar */}
