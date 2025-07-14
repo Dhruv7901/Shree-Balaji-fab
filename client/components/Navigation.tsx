@@ -35,10 +35,13 @@ const Navigation = () => {
         <div className="container mx-auto px-4 py-2">
           <div className="flex items-center justify-between text-sm">
             <div className="flex items-center space-x-6">
-              <div className="flex items-center space-x-2">
+              <button
+                className="flex items-center space-x-2 hover:opacity-80 transition-opacity"
+                onClick={sendGeneralInquiry}
+              >
                 <Phone className="h-4 w-4" />
                 <span>+91 98765 43210</span>
-              </div>
+              </button>
               <div className="hidden md:flex items-center space-x-2">
                 <MapPin className="h-4 w-4" />
                 <span>Visit our store in Mumbai</span>
