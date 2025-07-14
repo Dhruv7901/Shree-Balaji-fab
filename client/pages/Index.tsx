@@ -146,7 +146,7 @@ const Index = () => {
       discount: "50% OFF",
       category: "Traditional Collection",
       description:
-        "🏛️ HERITAGE PRIDE! Authentic Patola-inspired patterns straight from Gujarat's textile tradition. Own a piece of Indian heritage at unbeatable price!",
+        "���️ HERITAGE PRIDE! Authentic Patola-inspired patterns straight from Gujarat's textile tradition. Own a piece of Indian heritage at unbeatable price!",
     },
     {
       id: 10,
