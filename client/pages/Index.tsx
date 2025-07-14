@@ -127,7 +127,7 @@ const Index = () => {
     {
       id: 8,
       name: "Golden Lace Border Collection - Party Special",
-      price: "���1,500",
+      price: "₹1,500",
       originalPrice: "₹2,700",
       image:
         "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F8ada929b9c964af6b7146d68984dcc3a?format=webp&width=800",
@@ -142,7 +142,7 @@ const Index = () => {
       id: 9,
       name: "Traditional Patola Pattern - Heritage Collection",
       price: "₹1,500",
-      originalPrice: "₹3,000",
+      originalPrice: "���3,000",
       image:
         "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F2275342944014037a1baab85cc26729a?format=webp&width=800",
       rating: 4.9,
@@ -593,9 +593,36 @@ const Index = () => {
                     </div>
                   </div>
                 </div>
+                <div className="flex items-center space-x-3">
+                  <Mail className="w-5 h-5 text-saree-deep-red" />
+                  <div>
+                    <div className="font-semibold">balajifab165@gmail.com</div>
+                    <div className="text-muted-foreground">
+                      Email us for inquiries
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Instagram className="w-5 h-5 text-saree-deep-red" />
+                  <div>
+                    <div className="font-semibold">@divya_saree_couture</div>
+                    <div className="text-muted-foreground">
+                      Follow us on Instagram
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="flex space-x-4">
-                <Button className="bg-saree-deep-red hover:bg-saree-deep-red/90">
+              <div className="grid grid-cols-2 gap-4">
+                <Button
+                  className="bg-saree-deep-red hover:bg-saree-deep-red/90"
+                  onClick={() =>
+                    window.open(
+                      "https://maps.google.com/?q=Abhishek+Market+Ring+Rd,+Sahara+Darwaja,+New+Textile+Market,+Surat,+Gujarat+395002",
+                      "_blank",
+                    )
+                  }
+                >
+                  <Navigation2 className="mr-2 h-4 w-4" />
                   Get Directions
                 </Button>
                 <Button
@@ -606,16 +633,44 @@ const Index = () => {
                   <Phone className="mr-2 h-4 w-4" />
                   Call Store
                 </Button>
+                <Button
+                  variant="outline"
+                  className="border-blue-500 text-blue-600 hover:bg-blue-50"
+                  onClick={() =>
+                    window.open("mailto:balajifab165@gmail.com", "_blank")
+                  }
+                >
+                  <Mail className="mr-2 h-4 w-4" />
+                  Email Us
+                </Button>
+                <Button
+                  variant="outline"
+                  className="border-pink-500 text-pink-600 hover:bg-pink-50"
+                  onClick={() =>
+                    window.open(
+                      "https://www.instagram.com/divya_saree_couture?igsh=MTFpaTY3NHFkNzc5cw==",
+                      "_blank",
+                    )
+                  }
+                >
+                  <Instagram className="mr-2 h-4 w-4" />
+                  Instagram
+                </Button>
               </div>
             </div>
             <div className="relative">
-              <div className="w-full h-96 bg-muted rounded-lg flex items-center justify-center">
-                <div className="text-center">
-                  <MapPin className="w-16 h-16 text-saree-deep-red mx-auto mb-4" />
-                  <p className="text-muted-foreground">
-                    Map Integration Coming Soon
-                  </p>
-                </div>
+              <div className="w-full h-96 bg-muted rounded-lg overflow-hidden">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3720.6846815937887!2d72.82874657526145!3d21.189568380474395!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04e9c0d4e1f15%3A0x4b8b2f8a8a8a8a8a!2sAbhishek%20Market%20Ring%20Rd%2C%20Sahara%20Darwaja%2C%20New%20Textile%20Market%2C%20Surat%2C%20Gujarat%20395002!5e0!3m2!1sen!2sin!4v1"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Shree Balaji Fab Store Location"
+                  className="rounded-lg"
+                ></iframe>
               </div>
             </div>
           </div>
