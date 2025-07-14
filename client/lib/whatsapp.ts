@@ -44,7 +44,7 @@ Thank you!`;
 };
 
 export const generateGeneralInquiry = (): string => {
-  const message = `Hi Balaji Fab! 👋
+  const message = `Hi Shree Balaji Fab! 👋
 
 I'm interested in exploring your saree collection. Could you please help me with:
 
