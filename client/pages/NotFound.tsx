@@ -27,7 +27,7 @@ const NotFound = () => {
           </h1>
           <p className="text-muted-foreground mb-8">
             Sorry, the page you're looking for doesn't exist. Perhaps you'd like
-            to explore our beautiful collection of sarees instead?
+            to explore Balaji Fab's beautiful collection of sarees instead?
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
