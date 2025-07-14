@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
+import { useWhatsApp } from "../lib/whatsapp";
 
 const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
