@@ -2,14 +2,11 @@ import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import {
   Star,
-  Heart,
   Share2,
   Truck,
   Shield,
   RotateCcw,
   MessageCircle,
-  Plus,
-  Minus,
   ArrowLeft,
 } from "lucide-react";
 import { Button } from "../components/ui/button";
@@ -28,43 +25,175 @@ import { useWhatsApp } from "../lib/whatsapp";
 const ProductDetail = () => {
   const { id } = useParams();
   const [selectedImage, setSelectedImage] = useState(0);
-  const [quantity, setQuantity] = useState(1);
   const { sendQuickBuy, sendGeneralInquiry } = useWhatsApp();
 
-  // Mock product data - in real app, this would come from API/database
-  const product = {
-    id: 1,
-    name: "Royal Banarasi Silk Saree",
-    price: "₹8,999",
-    originalPrice: "₹12,999",
-    discount: "31% OFF",
-    rating: 4.8,
-    reviews: 127,
-    category: "Silk Sarees",
-    description:
-      "Exquisite handwoven Banarasi silk saree with intricate zari work and traditional motifs. Perfect for weddings and special occasions.",
-    features: [
-      "100% Pure Silk",
-      "Handwoven by master craftsmen",
-      "Intricate zari work",
-      "Traditional motifs",
-      "Comes with matching blouse piece",
-    ],
-    images: [
-      "/placeholder.svg",
-      "/placeholder.svg",
-      "/placeholder.svg",
-      "/placeholder.svg",
-    ],
-    specifications: {
-      fabric: "Pure Silk",
-      length: "6.5 meters",
-      width: "1.2 meters",
-      weight: "800 grams",
-      blouse: "Included (0.8 meters)",
-      care: "Dry clean only",
+  // Real product data matching the homepage products
+  const products = [
+    {
+      id: 1,
+      name: "Premium Trendy Collection - Golden Diagonal Stripes",
+      price: "₹1,500",
+      originalPrice: "₹2,500",
+      discount: "40% OFF",
+      rating: 4.9,
+      reviews: 245,
+      category: "Trendy Collection",
+      description:
+        "✨ EXCLUSIVE! Golden zari stripes that catch every eye! Perfect for office parties, casual outings & festive occasions. Lightweight, comfortable & Instagram-ready!",
+      features: [
+        "Premium quality fabric with golden zari work",
+        "Lightweight and comfortable for all-day wear",
+        "Perfect for office parties and casual outings",
+        "Instagram-ready design",
+        "Comes with matching blouse piece",
+      ],
+      images: [
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F8df1c237be694093810d7cad742cf408?format=webp&width=800",
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F8df1c237be694093810d7cad742cf408?format=webp&width=800",
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F8df1c237be694093810d7cad742cf408?format=webp&width=800",
+      ],
+      specifications: {
+        fabric: "Cotton Silk Blend",
+        length: "6.5 meters",
+        width: "1.2 meters",
+        weight: "650 grams",
+        blouse: "Included (0.8 meters)",
+        care: "Machine wash gentle or dry clean",
+      },
     },
-  };
+    {
+      id: 2,
+      name: "Elegant Zigzag Pattern - Royal Collection",
+      price: "₹1,500",
+      originalPrice: "₹2,200",
+      discount: "32% OFF",
+      rating: 4.8,
+      reviews: 189,
+      category: "Designer Collection",
+      description:
+        "🔥 TRENDING NOW! Mesmerizing zigzag patterns with rich borders. These sarees are flying off our shelves! Perfect for weddings & special occasions.",
+      features: [
+        "Mesmerizing zigzag patterns with rich borders",
+        "Perfect for weddings and special occasions",
+        "High-quality craftsmanship",
+        "Trending design that's flying off our shelves",
+        "Comes with matching blouse piece",
+      ],
+      images: [
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F87c1fd5d8ed04adf84bcc00d2b0c5743?format=webp&width=800",
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F87c1fd5d8ed04adf84bcc00d2b0c5743?format=webp&width=800",
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F87c1fd5d8ed04adf84bcc00d2b0c5743?format=webp&width=800",
+      ],
+      specifications: {
+        fabric: "Designer Silk",
+        length: "6.5 meters",
+        width: "1.2 meters",
+        weight: "700 grams",
+        blouse: "Included (0.8 meters)",
+        care: "Dry clean recommended",
+      },
+    },
+    {
+      id: 3,
+      name: "Geometric Diamond Print - Contemporary Style",
+      price: "₹1,500",
+      originalPrice: "₹2,300",
+      discount: "35% OFF",
+      rating: 4.7,
+      reviews: 156,
+      category: "Contemporary Collection",
+      description:
+        "💎 STUNNING! Modern geometric patterns that make you stand out. Easy to drape, comfortable fabric. Perfect for young professionals & college events!",
+      features: [
+        "Modern geometric diamond patterns",
+        "Easy to drape and comfortable fabric",
+        "Perfect for young professionals",
+        "Ideal for college events and casual wear",
+        "Comes with matching blouse piece",
+      ],
+      images: [
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2Fef043fbc4bde4bbd84730e9ff0f5f72b?format=webp&width=800",
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2Fef043fbc4bde4bbd84730e9ff0f5f72b?format=webp&width=800",
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2Fef043fbc4bde4bbd84730e9ff0f5f72b?format=webp&width=800",
+      ],
+      specifications: {
+        fabric: "Cotton Blend",
+        length: "6.5 meters",
+        width: "1.2 meters",
+        weight: "600 grams",
+        blouse: "Included (0.8 meters)",
+        care: "Machine wash or dry clean",
+      },
+    },
+    {
+      id: 4,
+      name: "Luxury Silk Collection with Golden Border",
+      price: "₹1,500",
+      originalPrice: "₹2,800",
+      discount: "46% OFF",
+      rating: 4.9,
+      reviews: 298,
+      category: "Silk Sarees",
+      description:
+        "👑 ROYAL ELEGANCE! Premium silk with intricate golden borders. Feel like a queen at every function. Limited stock - grab yours before it's gone!",
+      features: [
+        "Premium luxury silk fabric",
+        "Intricate golden border work",
+        "Royal elegance for special occasions",
+        "Limited stock availability",
+        "Comes with matching blouse piece",
+      ],
+      images: [
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F2cf060907eeb4d7aa3b349b487ae89b7?format=webp&width=800",
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F2cf060907eeb4d7aa3b349b487ae89b7?format=webp&width=800",
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F2cf060907eeb4d7aa3b349b487ae89b7?format=webp&width=800",
+      ],
+      specifications: {
+        fabric: "Pure Silk",
+        length: "6.5 meters",
+        width: "1.2 meters",
+        weight: "800 grams",
+        blouse: "Included (0.8 meters)",
+        care: "Dry clean only",
+      },
+    },
+    {
+      id: 5,
+      name: "Vibrant Feather Print - Artistic Collection",
+      price: "₹1,500",
+      originalPrice: "₹2,400",
+      discount: "38% OFF",
+      rating: 4.8,
+      reviews: 167,
+      category: "Printed Collection",
+      description:
+        "🦚 ARTISTIC BEAUTY! Stunning feather motifs that symbolize grace & freedom. Perfect conversation starter at any gathering. Unique & eye-catching!",
+      features: [
+        "Stunning feather motifs design",
+        "Symbolizes grace and freedom",
+        "Perfect conversation starter",
+        "Unique and eye-catching patterns",
+        "Comes with matching blouse piece",
+      ],
+      images: [
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F9a66ca2601f54523927dc3d6b74dc52c?format=webp&width=800",
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F9a66ca2601f54523927dc3d6b74dc52c?format=webp&width=800",
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F9a66ca2601f54523927dc3d6b74dc52c?format=webp&width=800",
+      ],
+      specifications: {
+        fabric: "Art Silk",
+        length: "6.5 meters",
+        width: "1.2 meters",
+        weight: "650 grams",
+        blouse: "Included (0.8 meters)",
+        care: "Dry clean recommended",
+      },
+    },
+  ];
+
+  // Find the current product or default to first product
+  const product =
+    products.find((p) => p.id === parseInt(id || "1")) || products[0];
 
   const reviews = [
     {
@@ -107,8 +236,8 @@ const ProductDetail = () => {
             Home
           </Link>
           <span>/</span>
-          <Link to="/silk-sarees" className="hover:text-saree-deep-red">
-            Silk Sarees
+          <Link to="/#products-section" className="hover:text-saree-deep-red">
+            Products
           </Link>
           <span>/</span>
           <span className="text-foreground">{product.name}</span>
@@ -132,7 +261,7 @@ const ProductDetail = () => {
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="grid grid-cols-4 gap-2">
+            <div className="grid grid-cols-3 gap-2">
               {product.images.map((image, index) => (
                 <button
                   key={index}
@@ -201,54 +330,23 @@ const ProductDetail = () => {
 
             <Separator />
 
-            {/* Quantity and Actions */}
+            {/* Order Now Button - Green WhatsApp Style */}
             <div className="space-y-4">
-              <div>
-                <label className="text-sm font-semibold mb-2 block">
-                  Quantity
-                </label>
-                <div className="flex items-center space-x-3">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  >
-                    <Minus className="w-4 h-4" />
-                  </Button>
-                  <span className="w-12 text-center font-semibold">
-                    {quantity}
-                  </span>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setQuantity(quantity + 1)}
-                  >
-                    <Plus className="w-4 h-4" />
-                  </Button>
-                </div>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Button
-                  size="lg"
-                  className="flex-1 bg-saree-deep-red hover:bg-saree-deep-red/90"
-                  onClick={() =>
-                    sendQuickBuy({
-                      name: product.name,
-                      price: product.price,
-                      category: product.category,
-                      image: product.images[selectedImage],
-                    })
-                  }
-                >
-                  <MessageCircle className="w-4 h-4 mr-2" />
-                  Order Now
-                </Button>
-                <Button variant="outline" size="lg" className="flex-1">
-                  <Heart className="w-4 h-4 mr-2" />
-                  Add to Wishlist
-                </Button>
-              </div>
+              <Button
+                size="lg"
+                className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-4 text-lg"
+                onClick={() =>
+                  sendQuickBuy({
+                    name: product.name,
+                    price: product.price,
+                    category: product.category,
+                    image: product.images[selectedImage],
+                  })
+                }
+              >
+                <MessageCircle className="w-5 h-5 mr-3" />
+                Order Now via WhatsApp
+              </Button>
 
               <Button
                 variant="outline"
@@ -362,13 +460,13 @@ const ProductDetail = () => {
                 <CardContent className="p-6">
                   <div className="space-y-4">
                     <h3 className="font-semibold">
-                      Care Instructions for Silk Sarees
+                      Care Instructions for Your Saree
                     </h3>
                     <ul className="space-y-2">
                       <li className="flex items-start">
                         <div className="w-2 h-2 bg-saree-gold rounded-full mr-3 mt-2" />
                         <span>
-                          Dry clean only to preserve the silk and zari work
+                          Check fabric label for specific care instructions
                         </span>
                       </li>
                       <li className="flex items-start">
