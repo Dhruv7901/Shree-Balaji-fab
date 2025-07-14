@@ -100,7 +100,7 @@ const Index = () => {
   const testimonials = [
     {
       name: "Priya Sharma",
-      location: "Mumbai",
+      location: "Surat",
       rating: 5,
       comment:
         "Beautiful sarees with excellent quality. The colors are vibrant and the fabric is amazing!",
