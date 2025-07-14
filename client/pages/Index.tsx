@@ -459,6 +459,7 @@ const Index = () => {
                 <Button
                   variant="outline"
                   className="border-saree-gold text-saree-deep-red hover:bg-saree-gold/10"
+                  onClick={sendStoreVisitInquiry}
                 >
                   <Phone className="mr-2 h-4 w-4" />
                   Call Store
