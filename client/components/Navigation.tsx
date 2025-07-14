@@ -30,6 +30,13 @@ const Navigation = () => {
     { name: "Festive Collection", href: "/festive-collection" },
   ];
 
+  const scrollToProducts = () => {
+    const productsSection = document.getElementById("products-section");
+    if (productsSection) {
+      productsSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <header className="w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 border-b border-saree-gold/20">
       {/* Top Bar */}
@@ -60,22 +67,24 @@ const Navigation = () => {
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="saree-gradient w-10 h-10 rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-lg">S</span>
-            </div>
+          <Link to="/" className="flex items-center space-x-3">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F53ed207ebebe41a99b31295e5d3b01c2?format=webp&width=800"
+              alt="Shree Balaji Fab Logo"
+              className="w-12 h-12 object-contain"
+            />
             <div className="flex flex-col">
               <span className="text-xl font-serif font-bold saree-text-gradient">
-                Balaji Fab
+                Shree Balaji Fab
               </span>
               <span className="text-xs text-muted-foreground font-sans">
-                Premium Sarees
+                Unfold the Beauty of Tradition
               </span>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-6">
             {categories.map((category) => (
               <Link
                 key={category.name}
@@ -85,6 +94,35 @@ const Navigation = () => {
                 {category.name}
               </Link>
             ))}
+
+            {/* Additional Menu Items */}
+            <div className="flex items-center space-x-4 ml-4 pl-4 border-l border-saree-gold/30">
+              <Link
+                to="/faq"
+                className="text-sm text-foreground hover:text-saree-deep-red transition-colors duration-200 font-medium"
+              >
+                FAQ
+              </Link>
+              <Link
+                to="/contact"
+                className="text-sm text-foreground hover:text-saree-deep-red transition-colors duration-200 font-medium"
+              >
+                Contact
+              </Link>
+              <Link
+                to="/terms"
+                className="text-sm text-foreground hover:text-saree-deep-red transition-colors duration-200 font-medium"
+              >
+                Terms
+              </Link>
+              <button
+                onClick={sendGeneralInquiry}
+                className="text-sm text-foreground hover:text-saree-deep-red transition-colors duration-200 font-medium flex items-center space-x-1"
+              >
+                <MapPin className="h-3 w-3" />
+                <span>Location</span>
+              </button>
+            </div>
           </div>
 
           {/* Search and Actions */}
@@ -182,10 +220,42 @@ const Navigation = () => {
                   {category.name}
                 </Link>
               ))}
-              <div className="pt-4 border-t border-border">
+              <div className="pt-4 border-t border-border space-y-3">
+                <Link
+                  to="/faq"
+                  className="block text-foreground hover:text-saree-deep-red transition-colors duration-200 py-2"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  FAQ
+                </Link>
+                <Link
+                  to="/contact"
+                  className="block text-foreground hover:text-saree-deep-red transition-colors duration-200 py-2"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Contact Us
+                </Link>
+                <Link
+                  to="/terms"
+                  className="block text-foreground hover:text-saree-deep-red transition-colors duration-200 py-2"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Terms & Conditions
+                </Link>
+                <button
+                  onClick={() => {
+                    sendGeneralInquiry();
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="flex items-center space-x-2 text-foreground hover:text-saree-deep-red transition-colors duration-200 py-2"
+                >
+                  <MapPin className="h-4 w-4" />
+                  <span>Our Location</span>
+                </button>
                 <Link
                   to="/account"
                   className="flex items-center space-x-2 text-foreground hover:text-saree-deep-red transition-colors duration-200 py-2"
+                  onClick={() => setIsMobileMenuOpen(false)}
                 >
                   <User className="h-4 w-4" />
                   <span>My Account</span>
