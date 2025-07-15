@@ -10,6 +10,7 @@ const Navigation = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [isLogoZoomed, setIsLogoZoomed] = useState(false);
+  const [isLogoModalOpen, setIsLogoModalOpen] = useState(false);
   const { sendGeneralInquiry } = useWhatsApp();
 
   const menuItems = [
