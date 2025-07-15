@@ -17,6 +17,7 @@ import Terms from "./pages/Terms";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import SearchResults from "./pages/SearchResults";
+import AllProducts from "./pages/AllProducts";
 import { CartProvider } from "./contexts/CartContext";
 
 const queryClient = new QueryClient();
