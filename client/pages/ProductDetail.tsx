@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import {
   Star,
   Share2,
@@ -8,6 +8,7 @@ import {
   RotateCcw,
   MessageCircle,
   ArrowLeft,
+  Palette,
 } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
@@ -24,10 +25,12 @@ import { useWhatsApp } from "../lib/whatsapp";
 
 const ProductDetail = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [selectedImage, setSelectedImage] = useState(0);
+  const [selectedColor, setSelectedColor] = useState(0);
   const { sendQuickBuy, sendGeneralInquiry } = useWhatsApp();
 
-  // Real product data matching the homepage products
+  // Complete product data with all products from homepage
   const products = [
     {
       id: 1,
@@ -51,6 +54,11 @@ const ProductDetail = () => {
         "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F8df1c237be694093810d7cad742cf408?format=webp&width=800",
         "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F8df1c237be694093810d7cad742cf408?format=webp&width=800",
         "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F8df1c237be694093810d7cad742cf408?format=webp&width=800",
+      ],
+      colors: [
+        { name: "Golden Yellow", code: "#FFD700", available: true },
+        { name: "Cream", code: "#F5F5DC", available: true },
+        { name: "Light Gold", code: "#F0E68C", available: false },
       ],
       specifications: {
         fabric: "Cotton Silk Blend",
@@ -84,6 +92,11 @@ const ProductDetail = () => {
         "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F87c1fd5d8ed04adf84bcc00d2b0c5743?format=webp&width=800",
         "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F87c1fd5d8ed04adf84bcc00d2b0c5743?format=webp&width=800",
       ],
+      colors: [
+        { name: "Royal Blue", code: "#4169E1", available: true },
+        { name: "Navy Blue", code: "#000080", available: true },
+        { name: "Sky Blue", code: "#87CEEB", available: true },
+      ],
       specifications: {
         fabric: "Designer Silk",
         length: "6.5 meters",
@@ -115,6 +128,11 @@ const ProductDetail = () => {
         "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2Fef043fbc4bde4bbd84730e9ff0f5f72b?format=webp&width=800",
         "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2Fef043fbc4bde4bbd84730e9ff0f5f72b?format=webp&width=800",
         "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2Fef043fbc4bde4bbd84730e9ff0f5f72b?format=webp&width=800",
+      ],
+      colors: [
+        { name: "Black", code: "#000000", available: true },
+        { name: "White", code: "#FFFFFF", available: true },
+        { name: "Gray", code: "#808080", available: false },
       ],
       specifications: {
         fabric: "Cotton Blend",
@@ -148,6 +166,11 @@ const ProductDetail = () => {
         "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F2cf060907eeb4d7aa3b349b487ae89b7?format=webp&width=800",
         "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F2cf060907eeb4d7aa3b349b487ae89b7?format=webp&width=800",
       ],
+      colors: [
+        { name: "Deep Red", code: "#8B0000", available: true },
+        { name: "Maroon", code: "#800000", available: true },
+        { name: "Burgundy", code: "#900020", available: true },
+      ],
       specifications: {
         fabric: "Pure Silk",
         length: "6.5 meters",
@@ -180,6 +203,11 @@ const ProductDetail = () => {
         "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F9a66ca2601f54523927dc3d6b74dc52c?format=webp&width=800",
         "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F9a66ca2601f54523927dc3d6b74dc52c?format=webp&width=800",
       ],
+      colors: [
+        { name: "Emerald Green", code: "#50C878", available: true },
+        { name: "Teal Blue", code: "#008080", available: true },
+        { name: "Forest Green", code: "#228B22", available: false },
+      ],
       specifications: {
         fabric: "Art Silk",
         length: "6.5 meters",
@@ -189,11 +217,291 @@ const ProductDetail = () => {
         care: "Dry clean recommended",
       },
     },
+    {
+      id: 6,
+      name: "Abstract Paisley - Modern Traditional Fusion",
+      price: "₹1,500",
+      originalPrice: "₹2,100",
+      discount: "29% OFF",
+      rating: 4.7,
+      reviews: 134,
+      category: "Fusion Collection",
+      description:
+        "🎨 MODERN FUSION! Traditional paisley with contemporary twist. Perfect blend of classic & trendy. Ideal for office parties & casual meetups!",
+      features: [
+        "Traditional paisley with contemporary twist",
+        "Perfect blend of classic and trendy",
+        "Ideal for office parties",
+        "Casual meetup appropriate",
+        "Comes with matching blouse piece",
+      ],
+      images: [
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2Fb36e7a5d7d6346669a8ada54c6fc4636?format=webp&width=800",
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2Fb36e7a5d7d6346669a8ada54c6fc4636?format=webp&width=800",
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2Fb36e7a5d7d6346669a8ada54c6fc4636?format=webp&width=800",
+      ],
+      colors: [
+        { name: "Orange", code: "#FFA500", available: true },
+        { name: "Coral", code: "#FF7F50", available: true },
+        { name: "Peach", code: "#FFCBA4", available: true },
+      ],
+      specifications: {
+        fabric: "Cotton Silk",
+        length: "6.5 meters",
+        width: "1.2 meters",
+        weight: "680 grams",
+        blouse: "Included (0.8 meters)",
+        care: "Machine wash or dry clean",
+      },
+    },
+    {
+      id: 7,
+      name: "Nature's Leaf Collection - Organic Charm",
+      price: "₹1,500",
+      originalPrice: "₹2,600",
+      discount: "42% OFF",
+      rating: 4.8,
+      reviews: 201,
+      category: "Nature Collection",
+      description:
+        "🍃 NATURE INSPIRED! Beautiful leaf motifs in earthy tones. Connect with nature while looking absolutely gorgeous. Perfect for eco-conscious fashionistas!",
+      features: [
+        "Beautiful leaf motifs in earthy tones",
+        "Nature-inspired design",
+        "Eco-conscious fashion choice",
+        "Perfect for environmentally aware customers",
+        "Comes with matching blouse piece",
+      ],
+      images: [
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F7ee7684723684e5da5e63b1c2ada56ae?format=webp&width=800",
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F7ee7684723684e5da5e63b1c2ada56ae?format=webp&width=800",
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F7ee7684723684e5da5e63b1c2ada56ae?format=webp&width=800",
+      ],
+      colors: [
+        { name: "Olive Green", code: "#808000", available: true },
+        { name: "Earth Brown", code: "#8B4513", available: true },
+        { name: "Natural Beige", code: "#F5F5DC", available: true },
+      ],
+      specifications: {
+        fabric: "Organic Cotton",
+        length: "6.5 meters",
+        width: "1.2 meters",
+        weight: "620 grams",
+        blouse: "Included (0.8 meters)",
+        care: "Eco-friendly wash recommended",
+      },
+    },
+    {
+      id: 8,
+      name: "Golden Lace Border Collection - Party Special",
+      price: "₹1,500",
+      originalPrice: "₹2,700",
+      discount: "44% OFF",
+      rating: 4.9,
+      reviews: 276,
+      category: "Party Wear",
+      description:
+        "✨ PARTY PERFECT! Luxurious golden lace borders that shimmer under lights. Be the center of attention at every celebration. Premium quality guarantee!",
+      features: [
+        "Luxurious golden lace borders",
+        "Shimmers beautifully under lights",
+        "Perfect for parties and celebrations",
+        "Premium quality guarantee",
+        "Comes with matching blouse piece",
+      ],
+      images: [
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F8ada929b9c964af6b7146d68984dcc3a?format=webp&width=800",
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F8ada929b9c964af6b7146d68984dcc3a?format=webp&width=800",
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F8ada929b9c964af6b7146d68984dcc3a?format=webp&width=800",
+      ],
+      colors: [
+        { name: "Golden Black", code: "#1C1C1C", available: true },
+        { name: "Midnight Blue", code: "#191970", available: true },
+        { name: "Deep Purple", code: "#483D8B", available: false },
+      ],
+      specifications: {
+        fabric: "Silk with Lace",
+        length: "6.5 meters",
+        width: "1.2 meters",
+        weight: "750 grams",
+        blouse: "Included (0.8 meters)",
+        care: "Dry clean only",
+      },
+    },
+    {
+      id: 9,
+      name: "Traditional Patola Pattern - Heritage Collection",
+      price: "₹1,500",
+      originalPrice: "₹3,000",
+      discount: "50% OFF",
+      rating: 4.9,
+      reviews: 312,
+      category: "Traditional Collection",
+      description:
+        "🏛️ HERITAGE PRIDE! Authentic Patola-inspired patterns straight from Gujarat's textile tradition. Own a piece of Indian heritage at unbeatable price!",
+      features: [
+        "Authentic Patola-inspired patterns",
+        "Gujarat's textile tradition",
+        "Heritage and cultural significance",
+        "Unbeatable price for quality",
+        "Comes with matching blouse piece",
+      ],
+      images: [
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F2275342944014037a1baab85cc26729a?format=webp&width=800",
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F2275342944014037a1baab85cc26729a?format=webp&width=800",
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F2275342944014037a1baab85cc26729a?format=webp&width=800",
+      ],
+      colors: [
+        { name: "Traditional Red", code: "#CC0000", available: true },
+        { name: "Heritage Blue", code: "#003366", available: true },
+        { name: "Royal Purple", code: "#663399", available: true },
+      ],
+      specifications: {
+        fabric: "Traditional Silk",
+        length: "6.5 meters",
+        width: "1.2 meters",
+        weight: "780 grams",
+        blouse: "Included (0.8 meters)",
+        care: "Dry clean with heritage care",
+      },
+    },
+    {
+      id: 10,
+      name: "Royal Silk Dupatta Collection - Premium Quality",
+      price: "₹1,500",
+      originalPrice: "₹2,500",
+      discount: "40% OFF",
+      rating: 4.8,
+      reviews: 189,
+      category: "Silk Collection",
+      description:
+        "👸 SILK LUXURY! Pure silk with golden borders that drape beautifully. Feel the difference of premium quality. Perfect for weddings & special occasions!",
+      features: [
+        "Pure silk with golden borders",
+        "Drapes beautifully",
+        "Premium quality difference",
+        "Perfect for weddings",
+        "Comes with matching blouse piece",
+      ],
+      images: [
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F468ee82c93f44263be70198e10d99c5c?format=webp&width=800",
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F468ee82c93f44263be70198e10d99c5c?format=webp&width=800",
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F468ee82c93f44263be70198e10d99c5c?format=webp&width=800",
+      ],
+      colors: [
+        { name: "Royal Purple", code: "#7851A9", available: true },
+        { name: "Lavender", code: "#E6E6FA", available: true },
+        { name: "Plum", code: "#DDA0DD", available: false },
+      ],
+      specifications: {
+        fabric: "Pure Silk",
+        length: "6.5 meters",
+        width: "1.2 meters",
+        weight: "720 grams",
+        blouse: "Included (0.8 meters)",
+        care: "Dry clean only",
+      },
+    },
+    {
+      id: 11,
+      name: "Vibrant Bandhani - Rajasthani Elegance",
+      price: "₹1,500",
+      originalPrice: "₹2,300",
+      discount: "35% OFF",
+      rating: 4.7,
+      reviews: 145,
+      category: "Bandhani Collection",
+      description:
+        "🎯 AUTHENTIC BANDHANI! Hand-tied traditional patterns in vibrant colors. Straight from Rajasthan's royal textile heritage. Limited edition collection!",
+      features: [
+        "Hand-tied traditional Bandhani patterns",
+        "Vibrant authentic colors",
+        "Rajasthan's royal textile heritage",
+        "Limited edition collection",
+        "Comes with matching blouse piece",
+      ],
+      images: [
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2Fbb0975b280054b3d85ee71d51ea3d52a?format=webp&width=800",
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2Fbb0975b280054b3d85ee71d51ea3d52a?format=webp&width=800",
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2Fbb0975b280054b3d85ee71d51ea3d52a?format=webp&width=800",
+      ],
+      colors: [
+        { name: "Vibrant Pink", code: "#FF69B4", available: true },
+        { name: "Magenta", code: "#FF00FF", available: true },
+        { name: "Hot Pink", code: "#FF1493", available: true },
+      ],
+      specifications: {
+        fabric: "Traditional Bandhani",
+        length: "6.5 meters",
+        width: "1.2 meters",
+        weight: "660 grams",
+        blouse: "Included (0.8 meters)",
+        care: "Hand wash with care",
+      },
+    },
+    {
+      id: 12,
+      name: "Delicate Floral Print - Garden Fresh Collection",
+      price: "₹1,500",
+      originalPrice: "₹2,200",
+      discount: "32% OFF",
+      rating: 4.8,
+      reviews: 223,
+      category: "Floral Collection",
+      description:
+        "🌸 FRESH & FEMININE! Beautiful floral prints that never go out of style. Light, breezy, and perfect for daily wear, office, or casual outings!",
+      features: [
+        "Beautiful floral prints",
+        "Timeless and never out of style",
+        "Light and breezy fabric",
+        "Perfect for daily wear and office",
+        "Comes with matching blouse piece",
+      ],
+      images: [
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F0b1c6490a16b41a889c815109d4c4894?format=webp&width=800",
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F0b1c6490a16b41a889c815109d4c4894?format=webp&width=800",
+        "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F0b1c6490a16b41a889c815109d4c4894?format=webp&width=800",
+      ],
+      colors: [
+        { name: "Soft Pink", code: "#FFB6C1", available: true },
+        { name: "Rose", code: "#FF007F", available: true },
+        { name: "Blush", code: "#FFC0CB", available: true },
+      ],
+      specifications: {
+        fabric: "Cotton Floral",
+        length: "6.5 meters",
+        width: "1.2 meters",
+        weight: "580 grams",
+        blouse: "Included (0.8 meters)",
+        care: "Machine wash gentle",
+      },
+    },
   ];
 
-  // Find the current product or default to first product
-  const product =
-    products.find((p) => p.id === parseInt(id || "1")) || products[0];
+  // Find the current product or handle error
+  const product = products.find((p) => p.id === parseInt(id || "1"));
+
+  // If product not found, show error page
+  if (!product) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Navigation />
+        <div className="container mx-auto px-4 py-16 text-center">
+          <h1 className="text-4xl font-bold mb-4">Product Not Found</h1>
+          <p className="text-muted-foreground mb-8">
+            The product you're looking for doesn't exist.
+          </p>
+          <Button
+            onClick={() => navigate("/")}
+            className="bg-saree-deep-red hover:bg-saree-deep-red/90"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Home
+          </Button>
+        </div>
+      </div>
+    );
+  }
 
   const reviews = [
     {
@@ -225,6 +533,16 @@ const ProductDetail = () => {
     },
   ];
 
+  const handleOrderNow = () => {
+    const selectedColorName = product.colors[selectedColor]?.name || "Default";
+    sendQuickBuy({
+      name: `${product.name} - ${selectedColorName}`,
+      price: product.price,
+      category: product.category,
+      image: product.images[selectedImage],
+    });
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -244,11 +562,9 @@ const ProductDetail = () => {
         </nav>
 
         {/* Back Button */}
-        <Button variant="ghost" asChild className="mb-6">
-          <Link to="/">
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Collection
-          </Link>
+        <Button variant="ghost" onClick={() => navigate("/")} className="mb-6">
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          Back to Collection
         </Button>
 
         <div className="grid lg:grid-cols-2 gap-12">
@@ -315,6 +631,39 @@ const ProductDetail = () => {
 
             <p className="text-muted-foreground">{product.description}</p>
 
+            {/* Color Options */}
+            <div>
+              <h3 className="font-semibold mb-3 flex items-center">
+                <Palette className="w-4 h-4 mr-2" />
+                Available Colors
+              </h3>
+              <div className="flex flex-wrap gap-3">
+                {product.colors.map((color, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setSelectedColor(index)}
+                    disabled={!color.available}
+                    className={`relative flex items-center space-x-2 p-2 rounded-lg border-2 transition-all ${
+                      selectedColor === index
+                        ? "border-saree-gold"
+                        : "border-gray-200 hover:border-saree-gold/50"
+                    } ${!color.available ? "opacity-50 cursor-not-allowed" : ""}`}
+                  >
+                    <div
+                      className="w-6 h-6 rounded-full border"
+                      style={{ backgroundColor: color.code }}
+                    />
+                    <span className="text-sm font-medium">{color.name}</span>
+                    {!color.available && (
+                      <span className="text-xs text-red-500">
+                        (Out of Stock)
+                      </span>
+                    )}
+                  </button>
+                ))}
+              </div>
+            </div>
+
             {/* Features */}
             <div>
               <h3 className="font-semibold mb-3">Key Features</h3>
@@ -330,19 +679,12 @@ const ProductDetail = () => {
 
             <Separator />
 
-            {/* Order Now Button - Green WhatsApp Style */}
+            {/* Order Now Button - Enhanced Green WhatsApp Style */}
             <div className="space-y-4">
               <Button
                 size="lg"
                 className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-6 text-xl shadow-lg hover:shadow-xl transition-all duration-200 border-0"
-                onClick={() =>
-                  sendQuickBuy({
-                    name: product.name,
-                    price: product.price,
-                    category: product.category,
-                    image: product.images[selectedImage],
-                  })
-                }
+                onClick={handleOrderNow}
               >
                 <MessageCircle className="w-6 h-6 mr-3" />
                 Order Now via WhatsApp
