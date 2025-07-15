@@ -76,9 +76,6 @@ const Navigation = () => {
                 <span>Visit our store in Surat</span>
               </div>
             </div>
-            <div className="hidden md:block">
-              <span>Free shipping on orders above ₹2,999</span>
-            </div>
           </div>
         </div>
       </div>
