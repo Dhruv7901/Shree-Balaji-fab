@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Star,
   Truck,
@@ -142,7 +143,7 @@ const Index = () => {
       id: 9,
       name: "Traditional Patola Pattern - Heritage Collection",
       price: "₹1,500",
-      originalPrice: "���3,000",
+      originalPrice: "₹3,000",
       image:
         "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F2275342944014037a1baab85cc26729a?format=webp&width=800",
       rating: 4.9,
