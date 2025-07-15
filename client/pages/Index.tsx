@@ -176,7 +176,7 @@ const Index = () => {
     {
       id: 11,
       name: "Vibrant Bandhani - Rajasthani Elegance",
-      price: "��1,500",
+      price: "₹1,500",
       originalPrice: "₹2,300",
       image:
         "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2Fbb0975b280054b3d85ee71d51ea3d52a?format=webp&width=800",
@@ -371,32 +371,154 @@ const Index = () => {
             </div>
 
             <div className="relative">
-              <div className="relative z-10">
-                <img
-                  src="https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F8df1c237be694093810d7cad742cf408?format=webp&width=800"
-                  alt="Premium Trendy Collection Saree"
-                  className="w-full h-[600px] object-cover rounded-2xl shadow-2xl"
-                />
-                <div className="absolute inset-0 saree-gradient opacity-20 rounded-2xl"></div>
+              {/* Dynamic Product Carousel */}
+              <div className="relative z-10 overflow-hidden rounded-2xl shadow-2xl">
+                <div
+                  className="flex transition-transform duration-500 ease-in-out"
+                  style={{
+                    transform: `translateX(-${currentHeroProduct * 100}%)`,
+                  }}
+                >
+                  {featuredProducts.map((product, index) => (
+                    <div
+                      key={product.id}
+                      className="w-full flex-shrink-0 relative"
+                    >
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="w-full h-[600px] object-cover"
+                      />
+                      <div className="absolute inset-0 saree-gradient opacity-20"></div>
 
-                {/* Featured Product Badge */}
-                <div className="absolute top-6 left-6 bg-white/90 backdrop-blur-sm rounded-lg p-4 shadow-lg">
-                  <div className="text-sm font-semibold text-saree-deep-red">
-                    Featured Today
-                  </div>
-                  <div className="text-xs text-muted-foreground">
-                    Golden Stripe Collection
-                  </div>
-                  <div className="flex items-center mt-1">
-                    <span className="text-lg font-bold text-saree-deep-red">
-                      ₹1,500
-                    </span>
-                    <span className="text-xs text-muted-foreground line-through ml-2">
-                      ₹2,500
-                    </span>
-                  </div>
+                      {/* Product Badge */}
+                      <div className="absolute top-6 left-6 bg-white/90 backdrop-blur-sm rounded-lg p-4 shadow-lg max-w-xs">
+                        <div className="text-sm font-semibold text-saree-deep-red">
+                          Featured Collection
+                        </div>
+                        <div className="text-xs text-muted-foreground line-clamp-2 mb-2">
+                          {product.category}
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <span className="text-lg font-bold text-saree-deep-red">
+                              {product.price}
+                            </span>
+                            <span className="text-xs text-muted-foreground line-through ml-2">
+                              {product.originalPrice}
+                            </span>
+                          </div>
+                          <Badge
+                            variant="destructive"
+                            className="bg-saree-coral text-xs"
+                          >
+                            {product.discount}
+                          </Badge>
+                        </div>
+                        <div className="flex items-center mt-2">
+                          <Star className="w-3 h-3 fill-saree-gold text-saree-gold" />
+                          <span className="text-xs ml-1">{product.rating}</span>
+                          <span className="text-xs text-muted-foreground ml-1">
+                            ({product.reviews})
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Quick Order Button */}
+                      <div className="absolute bottom-6 right-6">
+                        <Button
+                          className="bg-green-600 hover:bg-green-700 text-white shadow-lg"
+                          onClick={() =>
+                            sendQuickBuy({
+                              name: product.name,
+                              price: product.price,
+                              category: product.category,
+                              image: product.image,
+                            })
+                          }
+                        >
+                          <MessageCircle className="w-4 h-4 mr-2" />
+                          Order Now
+                        </Button>
+                      </div>
+                    </div>
+                  ))}
                 </div>
+
+                {/* Navigation Arrows */}
+                <button
+                  onClick={prevHeroProduct}
+                  className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 rounded-full p-3 shadow-lg transition-all duration-200 hover:scale-110"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
+                <button
+                  onClick={nextHeroProduct}
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 rounded-full p-3 shadow-lg transition-all duration-200 hover:scale-110"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
+
+                {/* Play/Pause Button */}
+                <button
+                  onClick={() => setIsAutoPlaying(!isAutoPlaying)}
+                  className="absolute top-6 right-6 bg-white/80 hover:bg-white text-gray-800 rounded-full p-2 shadow-lg transition-all duration-200"
+                >
+                  {isAutoPlaying ? (
+                    <Pause className="w-4 h-4" />
+                  ) : (
+                    <Play className="w-4 h-4" />
+                  )}
+                </button>
               </div>
+
+              {/* Carousel Indicators/Dots */}
+              <div className="flex justify-center mt-6 space-x-2">
+                {featuredProducts.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => goToHeroProduct(index)}
+                    className={`w-3 h-3 rounded-full transition-all duration-200 ${
+                      index === currentHeroProduct
+                        ? "bg-saree-deep-red scale-125"
+                        : "bg-gray-300 hover:bg-gray-400"
+                    }`}
+                  />
+                ))}
+              </div>
+
+              {/* Horizontal Scroll Bar */}
+              <div className="mt-4 bg-gray-200 rounded-full h-2 relative overflow-hidden">
+                <div
+                  className="bg-saree-deep-red h-full rounded-full transition-all duration-500 ease-in-out"
+                  style={{
+                    width: `${((currentHeroProduct + 1) / featuredProducts.length) * 100}%`,
+                  }}
+                ></div>
+              </div>
+
+              {/* Product Navigation Thumbnails */}
+              <div className="mt-6 flex space-x-3 overflow-x-auto pb-2">
+                {featuredProducts.map((product, index) => (
+                  <button
+                    key={product.id}
+                    onClick={() => goToHeroProduct(index)}
+                    className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all duration-200 ${
+                      index === currentHeroProduct
+                        ? "border-saree-gold shadow-lg scale-105"
+                        : "border-gray-200 hover:border-saree-gold/50"
+                    }`}
+                  >
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+
+              {/* Background Decorations */}
               <div className="absolute top-8 -left-8 w-32 h-32 saree-gradient rounded-full opacity-30 blur-xl"></div>
               <div className="absolute bottom-8 -right-8 w-40 h-40 bg-saree-emerald/30 rounded-full opacity-50 blur-xl"></div>
             </div>
