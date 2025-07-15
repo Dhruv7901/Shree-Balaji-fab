@@ -9,6 +9,7 @@ const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [isLogoZoomed, setIsLogoZoomed] = useState(false);
   const { sendGeneralInquiry } = useWhatsApp();
 
   const menuItems = [
