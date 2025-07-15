@@ -96,6 +96,7 @@ const Navigation = () => {
                   isLogoZoomed ? "scale-125" : ""
                 }`}
                 onClick={handleLogoClick}
+                title="Click to view full logo"
               />
               {/* Subtle glow effect on hover */}
               <div className="absolute inset-0 rounded-full bg-saree-gold/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-md"></div>
