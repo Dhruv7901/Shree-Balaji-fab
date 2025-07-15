@@ -480,9 +480,6 @@ const Index = () => {
                 className="group cursor-pointer hover:shadow-lg transition-all duration-300 overflow-hidden"
                 onMouseEnter={() => setHoveredProduct(product.id)}
                 onMouseLeave={() => setHoveredProduct(null)}
-                onClick={() =>
-                  (window.location.href = `/product/${product.id}`)
-                }
               >
                 <CardContent className="p-0">
                   <div className="relative">
