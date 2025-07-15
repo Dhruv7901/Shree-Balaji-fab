@@ -9,7 +9,7 @@ const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [isLogoZoomed, setIsLogoZoomed] = useState(false);
+    const [isLogoZoomed, setIsLogoZoomed] = useState(false);
   const [isLogoModalOpen, setIsLogoModalOpen] = useState(false);
   const { sendGeneralInquiry } = useWhatsApp();
 
@@ -20,7 +20,7 @@ const Navigation = () => {
     { name: "About", href: "/about" },
   ];
 
-  const scrollToProducts = () => {
+    const scrollToProducts = () => {
     const productsSection = document.getElementById("products-section");
     if (productsSection) {
       productsSection.scrollIntoView({ behavior: "smooth" });
@@ -36,17 +36,23 @@ const Navigation = () => {
 
   const handleMobileSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    const mobileSearchInput = e.currentTarget.querySelector(
-      "input",
-    ) as HTMLInputElement;
+    const mobileSearchInput = e.currentTarget.querySelector('input') as HTMLInputElement;
     if (mobileSearchInput?.value.trim()) {
       window.location.href = `/search?q=${encodeURIComponent(mobileSearchInput.value.trim())}`;
     }
+    };
+
+    const handleLogoClick = (e: React.MouseEvent) => {
+    e.preventDefault(); // Prevent navigation
+    setIsLogoZoomed(true);
+    setTimeout(() => {
+      setIsLogoZoomed(false);
+      setIsLogoModalOpen(true);
+    }, 200);
   };
 
-  const handleLogoClick = () => {
-    setIsLogoZoomed(true);
-    setTimeout(() => setIsLogoZoomed(false), 300);
+  const closeLogo Modal = () => {
+    setIsLogoModalOpen(false);
   };
 
   return (
@@ -78,14 +84,14 @@ const Navigation = () => {
       {/* Main Navigation */}
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          {/* Logo */}
+                    {/* Logo */}
           <Link to="/" className="flex items-center space-x-4 group">
             <div className="relative">
               <img
                 src="https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F53ed207ebebe41a99b31295e5d3b01c2?format=webp&width=800"
                 alt="Shree Balaji Fab Logo"
                 className={`w-16 h-16 object-contain cursor-pointer transition-all duration-300 hover:scale-110 ${
-                  isLogoZoomed ? "scale-125" : ""
+                  isLogoZoomed ? 'scale-125' : ''
                 }`}
                 onClick={handleLogoClick}
               />
@@ -133,12 +139,9 @@ const Navigation = () => {
           {/* Search and Actions */}
           <div className="flex items-center space-x-4">
             {/* Search */}
-            <div className="hidden md:flex items-center relative">
+                        <div className="hidden md:flex items-center relative">
               {isSearchOpen ? (
-                <form
-                  onSubmit={handleSearch}
-                  className="flex items-center space-x-2"
-                >
+                <form onSubmit={handleSearch} className="flex items-center space-x-2">
                   <Input
                     type="text"
                     placeholder="Search sarees..."
@@ -147,7 +150,11 @@ const Navigation = () => {
                     className="w-64 border-saree-gold/30 focus:border-saree-gold"
                     autoFocus
                   />
-                  <Button type="submit" variant="ghost" size="sm">
+                  <Button
+                    type="submit"
+                    variant="ghost"
+                    size="sm"
+                  >
                     <Search className="h-4 w-4" />
                   </Button>
                   <Button
@@ -173,7 +180,7 @@ const Navigation = () => {
               )}
             </div>
 
-            {/* Account */}
+                        {/* Account */}
             <Button variant="ghost" size="sm" asChild>
               <Link to="/login">
                 <User className="h-5 w-5" />
@@ -196,7 +203,7 @@ const Navigation = () => {
           </div>
         </div>
 
-        {/* Mobile Search */}
+                {/* Mobile Search */}
         <div className="md:hidden mt-4">
           <form onSubmit={handleMobileSearch} className="flex gap-2">
             <Input
@@ -250,7 +257,7 @@ const Navigation = () => {
                 <span>Our Location</span>
               </button>
 
-              <div className="pt-4 border-t border-border">
+                            <div className="pt-4 border-t border-border">
                 <Link
                   to="/login"
                   className="flex items-center space-x-2 text-foreground hover:text-saree-deep-red transition-colors duration-200 py-2"
