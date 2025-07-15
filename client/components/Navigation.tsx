@@ -273,6 +273,73 @@ const Navigation = () => {
           </div>
         )}
       </nav>
+
+      {/* Logo Modal */}
+      {isLogoModalOpen && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+          <div className="relative bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
+            {/* Close Button */}
+            <button
+              onClick={closeLogoModal}
+              className="absolute top-4 right-4 z-10 bg-black/20 hover:bg-black/40 text-white rounded-full p-2 transition-all duration-200"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            {/* Modal Content */}
+            <div className="p-8 text-center">
+              <h2 className="text-3xl font-serif font-bold text-saree-deep-red mb-6">
+                Shree Balaji Fab
+              </h2>
+
+              {/* Full Logo Display */}
+              <div className="relative mb-6">
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F53ed207ebebe41a99b31295e5d3b01c2?format=webp&width=800"
+                  alt="Shree Balaji Fab Complete Logo"
+                  className="w-full max-w-md mx-auto object-contain"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-saree-gold/10 to-transparent"></div>
+              </div>
+
+              {/* Brand Information */}
+              <div className="space-y-4">
+                <p className="text-xl font-serif text-saree-deep-red">
+                  "Unfold the Beauty of Tradition"
+                </p>
+                <p className="text-muted-foreground">
+                  Experience the finest collection of traditional sarees with
+                  authentic Indian craftsmanship
+                </p>
+
+                {/* Contact Information */}
+                <div className="grid md:grid-cols-2 gap-4 mt-6 text-sm">
+                  <div className="flex items-center justify-center space-x-2 p-3 bg-saree-warm-cream/50 rounded-lg">
+                    <Phone className="w-4 h-4 text-saree-deep-red" />
+                    <span>+91 9426617601</span>
+                  </div>
+                  <div className="flex items-center justify-center space-x-2 p-3 bg-saree-warm-cream/50 rounded-lg">
+                    <MapPin className="w-4 h-4 text-saree-deep-red" />
+                    <span>Surat, Gujarat</span>
+                  </div>
+                </div>
+
+                {/* CTA Button */}
+                <Button
+                  className="mt-6 bg-green-600 hover:bg-green-700 text-white"
+                  onClick={() => {
+                    closeLogoModal();
+                    sendGeneralInquiry();
+                  }}
+                >
+                  <MessageCircle className="w-4 h-4 mr-2" />
+                  Contact Us via WhatsApp
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 };
