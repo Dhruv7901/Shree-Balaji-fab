@@ -176,7 +176,7 @@ const Index = () => {
     {
       id: 11,
       name: "Vibrant Bandhani - Rajasthani Elegance",
-      price: "₹1,500",
+      price: "��1,500",
       originalPrice: "₹2,300",
       image:
         "https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2Fbb0975b280054b3d85ee71d51ea3d52a?format=webp&width=800",
@@ -262,12 +262,38 @@ const Index = () => {
     },
   ];
 
+  // Auto-rotation effect
+  useEffect(() => {
+    if (!isAutoPlaying) return;
+
+    const interval = setInterval(() => {
+      setCurrentHeroProduct((prev) => (prev + 1) % featuredProducts.length);
+    }, 4000); // Change every 4 seconds
+
+    return () => clearInterval(interval);
+  }, [isAutoPlaying, featuredProducts.length]);
+
   // Function to scroll to products section
   const scrollToProducts = () => {
     const productsSection = document.getElementById("products-section");
     if (productsSection) {
       productsSection.scrollIntoView({ behavior: "smooth" });
     }
+  };
+
+  // Hero navigation functions
+  const nextHeroProduct = () => {
+    setCurrentHeroProduct((prev) => (prev + 1) % featuredProducts.length);
+  };
+
+  const prevHeroProduct = () => {
+    setCurrentHeroProduct((prev) =>
+      prev === 0 ? featuredProducts.length - 1 : prev - 1,
+    );
+  };
+
+  const goToHeroProduct = (index: number) => {
+    setCurrentHeroProduct(index);
   };
 
   return (
