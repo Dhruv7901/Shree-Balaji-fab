@@ -292,9 +292,6 @@ const SearchResults = () => {
               <Card
                 key={product.id}
                 className="group cursor-pointer hover:shadow-lg transition-all duration-300 overflow-hidden"
-                onClick={() =>
-                  (window.location.href = `/product/${product.id}`)
-                }
               >
                 <CardContent className="p-0">
                   <div className="relative">
