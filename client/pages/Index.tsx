@@ -552,10 +552,12 @@ const Index = () => {
               size="lg"
               variant="outline"
               className="border-saree-gold text-saree-deep-red hover:bg-saree-gold/10"
-              onClick={sendGeneralInquiry}
+              asChild
             >
-              View All Products
-              <ArrowRight className="ml-2 h-4 w-4" />
+              <Link to="/products">
+                View All Products
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
             </Button>
           </div>
         </div>
