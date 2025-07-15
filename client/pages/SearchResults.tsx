@@ -294,50 +294,54 @@ const SearchResults = () => {
                 className="group cursor-pointer hover:shadow-lg transition-all duration-300 overflow-hidden"
               >
                 <CardContent className="p-0">
-                  <div className="relative">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-300"
-                    />
-                    <Badge
-                      variant="destructive"
-                      className="absolute top-3 left-3 bg-saree-coral"
-                    >
-                      {product.discount}
-                    </Badge>
-                  </div>
-                  <div className="p-4">
-                    <Badge variant="outline" className="text-xs mb-2">
-                      {product.category}
-                    </Badge>
-                    <h3 className="font-semibold text-lg mb-2 group-hover:text-saree-deep-red transition-colors line-clamp-2">
-                      {product.name}
-                    </h3>
-                    <div className="flex items-center mb-2">
-                      <div className="flex items-center mr-2">
-                        <Star className="w-4 h-4 fill-saree-gold text-saree-gold" />
-                        <span className="text-sm ml-1">{product.rating}</span>
-                      </div>
-                      <span className="text-sm text-muted-foreground">
-                        ({product.reviews} reviews)
-                      </span>
+                  <Link to={`/product/${product.id}`}>
+                    <div className="relative">
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-300"
+                      />
+                      <Badge
+                        variant="destructive"
+                        className="absolute top-3 left-3 bg-saree-coral"
+                      >
+                        {product.discount}
+                      </Badge>
                     </div>
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center space-x-2">
-                        <span className="text-lg font-bold text-saree-deep-red">
-                          {product.price}
-                        </span>
-                        <span className="text-sm text-muted-foreground line-through">
-                          {product.originalPrice}
+                    <div className="p-4">
+                      <Badge variant="outline" className="text-xs mb-2">
+                        {product.category}
+                      </Badge>
+                      <h3 className="font-semibold text-lg mb-2 group-hover:text-saree-deep-red transition-colors line-clamp-2">
+                        {product.name}
+                      </h3>
+                      <div className="flex items-center mb-2">
+                        <div className="flex items-center mr-2">
+                          <Star className="w-4 h-4 fill-saree-gold text-saree-gold" />
+                          <span className="text-sm ml-1">{product.rating}</span>
+                        </div>
+                        <span className="text-sm text-muted-foreground">
+                          ({product.reviews} reviews)
                         </span>
                       </div>
+                      <div className="flex items-center justify-between mb-3">
+                        <div className="flex items-center space-x-2">
+                          <span className="text-lg font-bold text-saree-deep-red">
+                            {product.price}
+                          </span>
+                          <span className="text-sm text-muted-foreground line-through">
+                            {product.originalPrice}
+                          </span>
+                        </div>
+                      </div>
                     </div>
+                  </Link>
+                  <div className="p-4 pt-0">
                     <Button
                       size="sm"
                       className="w-full bg-green-600 hover:bg-green-700 text-white"
                       onClick={(e) => {
-                        e.stopPropagation();
+                        e.preventDefault();
                         sendQuickBuy({
                           name: product.name,
                           price: product.price,
