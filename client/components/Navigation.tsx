@@ -78,17 +78,24 @@ const Navigation = () => {
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F53ed207ebebe41a99b31295e5d3b01c2?format=webp&width=800"
-              alt="Shree Balaji Fab Logo"
-              className="w-12 h-12 object-contain"
-            />
+          <Link to="/" className="flex items-center space-x-4 group">
+            <div className="relative">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets%2F2955f573b5cf4d4896c5aa8d99cf667c%2F53ed207ebebe41a99b31295e5d3b01c2?format=webp&width=800"
+                alt="Shree Balaji Fab Logo"
+                className={`w-16 h-16 object-contain cursor-pointer transition-all duration-300 hover:scale-110 ${
+                  isLogoZoomed ? "scale-125" : ""
+                }`}
+                onClick={handleLogoClick}
+              />
+              {/* Subtle glow effect on hover */}
+              <div className="absolute inset-0 rounded-full bg-saree-gold/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-md"></div>
+            </div>
             <div className="flex flex-col">
-              <span className="text-xl font-serif font-bold saree-text-gradient">
+              <span className="text-2xl md:text-3xl font-serif font-bold saree-text-gradient hover:scale-105 transition-transform duration-200">
                 Shree Balaji Fab
               </span>
-              <span className="text-xs text-muted-foreground font-sans">
+              <span className="text-sm text-muted-foreground font-sans">
                 Unfold the Beauty of Tradition
               </span>
             </div>
