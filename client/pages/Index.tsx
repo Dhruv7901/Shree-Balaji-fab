@@ -27,6 +27,8 @@ import { useWhatsApp } from "../lib/whatsapp";
 
 const Index = () => {
   const [hoveredProduct, setHoveredProduct] = useState<number | null>(null);
+  const [currentHeroProduct, setCurrentHeroProduct] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const { sendGeneralInquiry, sendQuickBuy, sendStoreVisitInquiry } =
     useWhatsApp();
 
